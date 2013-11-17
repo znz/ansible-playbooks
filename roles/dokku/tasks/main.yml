@@ -3,3 +3,11 @@
   shell: |
     creates=/usr/local/bin/dokku
     wget -qO- https://raw.github.com/progrium/dokku/master/bootstrap.sh | sudo bash
+
+- command: cat /home/dokku/.ssh/authorized_keys
+  register: authorized_keys
+- name: sshcommand acl-add dokku
+  shell: |
+    FIRSTUSER=$(getent passwd 1000 | cut -d: -f1)
+    cat /home/$FIRSTUSER/.ssh/authorized_keys | sudo sshcommand acl-add dokku vagrant
+  when: authorized_keys.stdout == ""
