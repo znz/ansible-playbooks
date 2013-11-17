@@ -13,3 +13,8 @@
     FIRSTUSER=$(getent passwd 1000 | cut -d: -f1)
     cat /home/$FIRSTUSER/.ssh/authorized_keys | sudo sshcommand acl-add dokku vagrant
   when: authorized_keys.stdout == ""
+
+- lineinfile: dest="/etc/ssh/sshd_config" regexp="^AllowUsers dokku" line="AllowUsers dokku"
+  notify:
+  - restart ssh
+  - etckeeper commit
