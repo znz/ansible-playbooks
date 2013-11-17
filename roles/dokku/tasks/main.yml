@@ -1,0 +1,5 @@
+---
+- name: install dokku
+  shell: |
+    creates=/usr/local/bin/dokku
+    wget -qO- https://raw.github.com/progrium/dokku/master/bootstrap.sh | sudo bash

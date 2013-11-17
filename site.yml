@@ -1,0 +1,5 @@
+---
+- hosts: dokku-servers
+  sudo: true
+  roles:
+    - role: dokku
