@@ -4,6 +4,8 @@
     creates=/usr/local/bin/dokku
     wget -qO- https://raw.github.com/progrium/dokku/master/bootstrap.sh | sudo bash
 
+- template: src=VHOST.j2 dest=/home/dokku/VHOST owner=root group=root mode=0644
+
 - command: cat /home/dokku/.ssh/authorized_keys
   register: authorized_keys
 - name: sshcommand acl-add dokku
