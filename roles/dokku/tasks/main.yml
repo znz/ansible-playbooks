@@ -18,3 +18,8 @@
   notify:
   - restart ssh
   - etckeeper commit
+
+- lineinfile: dest="/etc/default/grub" regexp='^GRUB_CMDLINE_LINUX=' line='GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"'
+  notify:
+  - update-grub
+  - etckeeper commit

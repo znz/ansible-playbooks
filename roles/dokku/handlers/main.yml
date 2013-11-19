@@ -3,3 +3,5 @@
   service: name=ssh state=restarted
 - name: etckeeper commit
   command: etckeeper commit "ansible dokku"
+- name: update-grub
+  command: update-grub
